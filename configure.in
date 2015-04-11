@@ -1,0 +1,12 @@
+AC_INIT(src/main.c)
+
+PACKAGE=fuckcpp
+VERSION=0.1.0
+
+AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+
+${CFLAGS=""}
+
+AC_PROG_CC
+
+AC_OUTPUT(Makefile src/Makefile)
