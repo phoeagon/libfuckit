@@ -42,14 +42,14 @@ and there's nothing we can do about that.
 
 1. Include `fuckit.h`
 
-    #include <fuckit.h>
+        #include <fuckit.h>
 
 2. Call `fuckit_init()` first things first.
 
-    int main() {
-        fuckit_init();
-        //whatever you originally do in main()
-    }
+        int main() {
+            fuckit_init();
+            //whatever you originally do in main()
+        }
 
 3. Compile with `-lfuckit -ludis86`
 
