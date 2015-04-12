@@ -57,15 +57,15 @@ and there's nothing we can do about that.
 
 1. Install `udis86` by:
 
-    cd ~
-    wget "http://downloads.sourceforge.net/project/udis86/udis86/1.7/udis86-1.7.2.tar.gz?r=http%3A%2F%2Fudis86.sourceforge.net%2F&ts=1428829142&use_mirror=liquidtelecom"
-    tar xf udis86-1.7.2.tar.gz
-    cd udis86-1.7.2 && ./configure.sh && make && sudo make install
+        cd ~
+        wget "http://downloads.sourceforge.net/project/udis86/udis86/1.7/udis86-1.7.2.tar.gz?r=http%3A%2F%2Fudis86.sourceforge.net%2F&ts=1428829142&use_mirror=liquidtelecom"
+        tar xf udis86-1.7.2.tar.gz
+        cd udis86-1.7.2 && ./configure.sh && make && sudo make install
 
 2. Install `libfuckit` by:
 
-    git clone [git_repo]
-    ./configure.sh && make && sudo make install
+        git clone [git_repo]
+        ./configure.sh && make && sudo make install
 
 ## Examples
 
