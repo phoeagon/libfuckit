@@ -58,7 +58,9 @@ def main():
     generate_one_int_to_one_int()
     print """
     void _fuckit_dyn_init_generated() {
-        printf(\"_fuckit_dyn_init_generated()\\n\");
+        #ifdef VERBOSE
+            printf(\"_fuckit_dyn_init_generated()\\n\");
+        #endif
         %s;
     }
     """ % (';\n        '.join(init_statements))

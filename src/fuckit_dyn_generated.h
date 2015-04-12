@@ -363,7 +363,9 @@
     
 
     void _fuckit_dyn_init_generated() {
-        printf("_fuckit_dyn_init_generated()\n");
+        #ifdef VERBOSE
+            printf("_fuckit_dyn_init_generated()\n");
+        #endif
         orig_sched_yield=dlsym(RTLD_NEXT, "sched_yield");
         #ifdef VERBOSE
  printf("%s: %p\n", "sched_yield", orig_sched_yield);
