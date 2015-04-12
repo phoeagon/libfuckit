@@ -1,5 +1,6 @@
-noinst_LIBRARIES = libfuckit.a
-bin_PROGRAMS = fuckit fuckitcxx fuckitdyn 
+lib_LIBRARIES = libfuckit.a
+include_HEADERS = fuckit.h
+check_PROGRAMS = fuckit fuckitcxx fuckitdyn 
 
 AM_CFLAGS = $(UDIS86_CFLAGS)
 
@@ -17,5 +18,6 @@ fuckitdyn_LDFLAGS =
 fuckitdyn_LDADD = libfuckit.a -ludis86 -ldl
 
 libfuckit_a_SOURCES = fuckit.c fuckit.h fuckit_dyn.c fuckit_dyn_generated.h
-libfuckit_a_CFLAGS = -Ddynamic
+libfuckit_a_CFLAGS = -Ddynamic -fPIC
 libfuckit_a_LIBADD =
+
