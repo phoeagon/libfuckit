@@ -1,0 +1,8 @@
+src/fuckit.h.gch 
+src/.deps
+config.sub
+config.guess
+autom4te.cache
+*.o
+*.la
+*.a

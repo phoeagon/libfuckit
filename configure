@@ -2856,6 +2856,8 @@ fi
 
 ${CFLAGS="-g"}
 ${CXXFLAGS="-g"}
+ac_config_files="$ac_config_files libfuckit.pc"
+
 
 case `pwd` in
   *\ * | *\	*)
@@ -17019,6 +17021,7 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
+    "libfuckit.pc") CONFIG_FILES="$CONFIG_FILES libfuckit.pc" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
