@@ -2,12 +2,12 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-ncludedir=@includedir@
+includedir=@includedir@
 
 Name: libfuckit
 Description: The library suppresses C/C++ runtime errors.
 URL: https://github.com/phoeagon/libfuckit
 Version: @VERSION@
 Requires: udis86
-Libs: -lfuckit
+Libs: -lfuckit -ludis86 -ldl
 Cflags: 

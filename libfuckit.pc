@@ -2,12 +2,12 @@
 prefix=/run/shm/d
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
-ncludedir=${prefix}/include
+includedir=${prefix}/include
 
 Name: libfuckit
 Description: The library suppresses C/C++ runtime errors.
 URL: https://github.com/phoeagon/libfuckit
 Version: 0.1.0
 Requires: udis86
-Libs: -lfuckit
+Libs: -lfuckit -ludis86 -ldl
 Cflags: 
