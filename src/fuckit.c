@@ -1,5 +1,12 @@
 #include "fuckit.h"
 
+
+static int _disassemble(const uint8_t * bin) {
+    ud_set_input_buffer(_fuckit.ud_obj, bin, 10);
+    ud_disassemble(_fuckit.ud_obj);
+    return ud_insn_len(_fuckit.ud_obj);
+}
+
 static void _fuckit_seghandle(int sig, siginfo_t* si, void* unused) {
   static char _in_handler = 0;
   ucontext_t* uc = (ucontext_t*) unused;
@@ -16,8 +23,8 @@ static void _fuckit_seghandle(int sig, siginfo_t* si, void* unused) {
   else
     gregs[REG_EIP] = _fuckit._default_entry;
 #endif
-
 }
+
 static void _fuckit_setup_segfault_handler() {
   struct sigaction sa;
   sa.sa_flags = SA_SIGINFO;
@@ -49,9 +56,4 @@ int fuckit_init() {
 
     _fuckit_setup_segfault_handler();
     atexit(_fuckit_final);
-}
-static int _disassemble(const uint8_t * bin) {
-    ud_set_input_buffer(_fuckit.ud_obj, bin, 10);
-    ud_disassemble(_fuckit.ud_obj);
-    return ud_insn_len(_fuckit.ud_obj);
 }

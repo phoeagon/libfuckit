@@ -17,4 +17,14 @@ struct fuckcpp_t {
 }_fuckit;
 
 int fuckit_init();
+
+// disable throw
+#if __cplusplus
+    #define throw sizeof
+#endif
+
+// Disable assert
+#define NDEBUG 
+
+
 #endif

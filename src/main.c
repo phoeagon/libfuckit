@@ -1,7 +1,7 @@
 #include "fuckit.h"
 int main()
 {
-    _fuckit_init();
+    fuckit_init();
     *((int*)123) = 144;
     printf("recovered\n");
     *((int*)34) = 144;
