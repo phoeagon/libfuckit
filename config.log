@@ -47,31 +47,93 @@ PATH: /home/phoeagon/git/alice/bin/
 ## Core tests. ##
 ## ----------- ##
 
-configure:1831: checking for a BSD-compatible install
-configure:1899: result: /usr/bin/install -c
-configure:1910: checking whether build environment is sane
-configure:1965: result: yes
-configure:2116: checking for a thread-safe mkdir -p
-configure:2155: result: /bin/mkdir -p
-configure:2162: checking for gawk
-configure:2178: found /usr/bin/gawk
-configure:2189: result: gawk
-configure:2200: checking whether make sets $(MAKE)
-configure:2222: result: yes
-configure:2251: checking whether make supports nested variables
-configure:2268: result: yes
-configure:2445: checking for gcc
-configure:2461: found /usr/bin/gcc
-configure:2472: result: gcc
-configure:2701: checking for C compiler version
-configure:2710: gcc --version >&5
+configure:1880: checking for a BSD-compatible install
+configure:1948: result: /usr/bin/install -c
+configure:1959: checking whether build environment is sane
+configure:2014: result: yes
+configure:2165: checking for a thread-safe mkdir -p
+configure:2204: result: /bin/mkdir -p
+configure:2211: checking for gawk
+configure:2227: found /usr/bin/gawk
+configure:2238: result: gawk
+configure:2249: checking whether make sets $(MAKE)
+configure:2271: result: yes
+configure:2300: checking whether make supports nested variables
+configure:2317: result: yes
+configure:2505: checking for g++
+configure:2521: found /usr/bin/g++
+configure:2532: result: g++
+configure:2559: checking for C++ compiler version
+configure:2568: g++ --version >&5
+g++ (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2579: $? = 0
+configure:2568: g++ -v >&5
+Using built-in specs.
+COLLECT_GCC=g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 4.8.2-19ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.8/README.Bugs --enable-languages=c,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.8 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.8 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --disable-libmudflap --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-4.8-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) 
+configure:2579: $? = 0
+configure:2568: g++ -V >&5
+g++: error: unrecognized command line option '-V'
+g++: fatal error: no input files
+compilation terminated.
+configure:2579: $? = 4
+configure:2568: g++ -qversion >&5
+g++: error: unrecognized command line option '-qversion'
+g++: fatal error: no input files
+compilation terminated.
+configure:2579: $? = 4
+configure:2599: checking whether the C++ compiler works
+configure:2621: g++    conftest.cpp  >&5
+configure:2625: $? = 0
+configure:2673: result: yes
+configure:2676: checking for C++ compiler default output file name
+configure:2678: result: a.out
+configure:2684: checking for suffix of executables
+configure:2691: g++ -o conftest    conftest.cpp  >&5
+configure:2695: $? = 0
+configure:2717: result: 
+configure:2739: checking whether we are cross compiling
+configure:2747: g++ -o conftest    conftest.cpp  >&5
+configure:2751: $? = 0
+configure:2758: ./conftest
+configure:2762: $? = 0
+configure:2777: result: no
+configure:2782: checking for suffix of object files
+configure:2804: g++ -c   conftest.cpp >&5
+configure:2808: $? = 0
+configure:2829: result: o
+configure:2833: checking whether we are using the GNU C++ compiler
+configure:2852: g++ -c   conftest.cpp >&5
+configure:2852: $? = 0
+configure:2861: result: yes
+configure:2870: checking whether g++ accepts -g
+configure:2890: g++ -c -g  conftest.cpp >&5
+configure:2890: $? = 0
+configure:2931: result: yes
+configure:2965: checking for style of include used by make
+configure:2993: result: GNU
+configure:3019: checking dependency style of g++
+configure:3130: result: gcc3
+configure:3193: checking for gcc
+configure:3209: found /usr/bin/gcc
+configure:3220: result: gcc
+configure:3449: checking for C compiler version
+configure:3458: gcc --version >&5
 gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
 Copyright (C) 2013 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-configure:2721: $? = 0
-configure:2710: gcc -v >&5
+configure:3469: $? = 0
+configure:3458: gcc -v >&5
 Using built-in specs.
 COLLECT_GCC=gcc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.8/lto-wrapper
@@ -79,62 +141,40 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Ubuntu 4.8.2-19ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.8/README.Bugs --enable-languages=c,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.8 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.8 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --disable-libmudflap --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-4.8-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
 gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) 
-configure:2721: $? = 0
-configure:2710: gcc -V >&5
+configure:3469: $? = 0
+configure:3458: gcc -V >&5
 gcc: error: unrecognized command line option '-V'
 gcc: fatal error: no input files
 compilation terminated.
-configure:2721: $? = 4
-configure:2710: gcc -qversion >&5
+configure:3469: $? = 4
+configure:3458: gcc -qversion >&5
 gcc: error: unrecognized command line option '-qversion'
 gcc: fatal error: no input files
 compilation terminated.
-configure:2721: $? = 4
-configure:2741: checking whether the C compiler works
-configure:2763: gcc    conftest.c  >&5
-configure:2767: $? = 0
-configure:2815: result: yes
-configure:2818: checking for C compiler default output file name
-configure:2820: result: a.out
-configure:2826: checking for suffix of executables
-configure:2833: gcc -o conftest    conftest.c  >&5
-configure:2837: $? = 0
-configure:2859: result: 
-configure:2881: checking whether we are cross compiling
-configure:2889: gcc -o conftest    conftest.c  >&5
-configure:2893: $? = 0
-configure:2900: ./conftest
-configure:2904: $? = 0
-configure:2919: result: no
-configure:2924: checking for suffix of object files
-configure:2946: gcc -c   conftest.c >&5
-configure:2950: $? = 0
-configure:2971: result: o
-configure:2975: checking whether we are using the GNU C compiler
-configure:2994: gcc -c   conftest.c >&5
-configure:2994: $? = 0
-configure:3003: result: yes
-configure:3012: checking whether gcc accepts -g
-configure:3032: gcc -c -g  conftest.c >&5
-configure:3032: $? = 0
-configure:3073: result: yes
-configure:3090: checking for gcc option to accept ISO C89
-configure:3153: gcc  -c   conftest.c >&5
-configure:3153: $? = 0
-configure:3166: result: none needed
-configure:3191: checking whether gcc understands -c and -o together
-configure:3213: gcc -c conftest.c -o conftest2.o
-configure:3216: $? = 0
-configure:3213: gcc -c conftest.c -o conftest2.o
-configure:3216: $? = 0
-configure:3228: result: yes
-configure:3256: checking for style of include used by make
-configure:3284: result: GNU
-configure:3310: checking dependency style of gcc
-configure:3421: result: gcc3
-configure:3584: checking that generated files are newer than configure
-configure:3590: result: done
-configure:3613: creating ./config.status
+configure:3469: $? = 4
+configure:3473: checking whether we are using the GNU C compiler
+configure:3492: gcc -c   conftest.c >&5
+configure:3492: $? = 0
+configure:3501: result: yes
+configure:3510: checking whether gcc accepts -g
+configure:3530: gcc -c -g  conftest.c >&5
+configure:3530: $? = 0
+configure:3571: result: yes
+configure:3588: checking for gcc option to accept ISO C89
+configure:3651: gcc  -c   conftest.c >&5
+configure:3651: $? = 0
+configure:3664: result: none needed
+configure:3689: checking whether gcc understands -c and -o together
+configure:3711: gcc -c conftest.c -o conftest2.o
+configure:3714: $? = 0
+configure:3711: gcc -c conftest.c -o conftest2.o
+configure:3714: $? = 0
+configure:3726: result: yes
+configure:3745: checking dependency style of gcc
+configure:3856: result: gcc3
+configure:4019: checking that generated files are newer than configure
+configure:4025: result: done
+configure:4052: creating ./config.status
 
 ## ---------------------- ##
 ## Running config.status. ##
@@ -151,21 +191,28 @@ generated by GNU Autoconf 2.69.  Invocation command line was
 
 on phoeagon-K43SV
 
-config.status:773: creating Makefile
-config.status:773: creating src/Makefile
-config.status:945: executing depfiles commands
+config.status:779: creating Makefile
+config.status:779: creating src/Makefile
+config.status:951: executing depfiles commands
 
 ## ---------------- ##
 ## Cache variables. ##
 ## ---------------- ##
 
 ac_cv_c_compiler_gnu=yes
+ac_cv_cxx_compiler_gnu=yes
+ac_cv_env_CCC_set=
+ac_cv_env_CCC_value=
 ac_cv_env_CC_set=
 ac_cv_env_CC_value=
 ac_cv_env_CFLAGS_set=
 ac_cv_env_CFLAGS_value=
 ac_cv_env_CPPFLAGS_set=
 ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CXXFLAGS_set=
+ac_cv_env_CXXFLAGS_value=
+ac_cv_env_CXX_set=
+ac_cv_env_CXX_value=
 ac_cv_env_LDFLAGS_set=
 ac_cv_env_LDFLAGS_value=
 ac_cv_env_LIBS_set=
@@ -181,10 +228,13 @@ ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_mkdir=/bin/mkdir
 ac_cv_prog_AWK=gawk
 ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_CXX=g++
 ac_cv_prog_cc_c89=
 ac_cv_prog_cc_g=yes
+ac_cv_prog_cxx_g=yes
 ac_cv_prog_make_make_set=yes
 am_cv_CC_dependencies_compiler_type=gcc3
+am_cv_CXX_dependencies_compiler_type=gcc3
 am_cv_make_support_nested_variables=yes
 am_cv_prog_cc_c_o=yes
 
@@ -209,6 +259,9 @@ CC='gcc'
 CCDEPMODE='depmode=gcc3'
 CFLAGS=''
 CPPFLAGS=''
+CXX='g++'
+CXXDEPMODE='depmode=gcc3'
+CXXFLAGS=''
 CYGPATH_W='echo'
 DEFS='-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckit\" -DVERSION=\"0.1.0\"'
 DEPDIR='.deps'
@@ -240,10 +293,13 @@ SHELL='/bin/bash'
 STRIP=''
 VERSION='0.1.0'
 ac_ct_CC='gcc'
+ac_ct_CXX='g++'
 am__EXEEXT_FALSE=''
 am__EXEEXT_TRUE='#'
 am__fastdepCC_FALSE='#'
 am__fastdepCC_TRUE=''
+am__fastdepCXX_FALSE='#'
+am__fastdepCXX_TRUE=''
 am__include='include'
 am__isrc=''
 am__leading_dot='.'

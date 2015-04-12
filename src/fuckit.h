@@ -1,7 +1,10 @@
 #ifndef FUCKCPP_H
 #define FUCKCPP_H
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
+
 #include <stdio.h>
 #include <udis86.h>
 #include <stdlib.h>
@@ -11,17 +14,18 @@
 #include <execinfo.h>
 
 
-struct fuckcpp_t {
-    void* _default_entry;
-    ud_t * ud_obj;
-}_fuckit;
-
+#if __cplusplus
+extern "C"
+#endif
 int fuckit_init();
 
 // disable throw
 #if __cplusplus
     #define throw sizeof
+typedef void (*cxa_throw_type)(void* , void *, void (*) (void *));
+extern "C" 
 #endif
+void __cxa_throw(void *thrown_exception, void *pvtinfo, void (*dest) (void *) );
 
 // Disable assert
 #define NDEBUG 

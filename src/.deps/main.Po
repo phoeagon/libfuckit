@@ -37,7 +37,7 @@ main.o: main.c /usr/include/stdc-predef.h fuckit.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h /usr/include/ucontext.h \
- /usr/include/execinfo.h
+ /usr/include/execinfo.h /usr/include/assert.h
 
 /usr/include/stdc-predef.h:
 
@@ -150,3 +150,5 @@ fuckit.h:
 /usr/include/ucontext.h:
 
 /usr/include/execinfo.h:
+
+/usr/include/assert.h:

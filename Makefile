@@ -198,6 +198,9 @@ CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = 
 CPPFLAGS = 
+CXX = g++
+CXXDEPMODE = depmode=gcc3
+CXXFLAGS = 
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckit\" -DVERSION=\"0.1.0\"
 DEPDIR = .deps
@@ -234,6 +237,7 @@ abs_srcdir = /run/shm/fuckcpp
 abs_top_builddir = /run/shm/fuckcpp
 abs_top_srcdir = /run/shm/fuckcpp
 ac_ct_CC = gcc
+ac_ct_CXX = g++
 am__include = include
 am__leading_dot = .
 am__quote = 

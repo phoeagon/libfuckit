@@ -1,6 +1,11 @@
 #include "fuckit.h"
 
 
+struct fuckcpp_t {
+    void* _default_entry;
+    ud_t * ud_obj;
+}_fuckit;
+
 static int _disassemble(const uint8_t * bin) {
     ud_set_input_buffer(_fuckit.ud_obj, bin, 10);
     ud_disassemble(_fuckit.ud_obj);
@@ -13,15 +18,15 @@ static void _fuckit_seghandle(int sig, siginfo_t* si, void* unused) {
   greg_t * gregs = uc->uc_mcontext.gregs;
   void * offending_addr = si->si_addr;
 #if __x86_64__
-  if ((sig != SIGSEGV && sig != SIGBUS) || gregs[REG_RIP] != offending_addr)
-    gregs[REG_RIP] = gregs[REG_RIP] + _disassemble(gregs[REG_RIP]);
+  if ((sig != SIGSEGV && sig != SIGBUS) || (void*)gregs[REG_RIP] != offending_addr)
+    gregs[REG_RIP] = gregs[REG_RIP] + _disassemble((const uint8_t*)gregs[REG_RIP]);
   else
-    gregs[REG_RIP] = _fuckit._default_entry;
+    gregs[REG_RIP] = (greg_t)_fuckit._default_entry;
 #else
-  if ((sig != SIGSEGV && sig != SIGBUS) || gregs[REG_EIP] != offending_addr)
-    gregs[REG_EIP] = gregs[REG_EIP] + _disassemble(gregs[REG_EIP]);
+  if ((sig != SIGSEGV && sig != SIGBUS) || (void*)gregs[REG_EIP] != offending_addr)
+    gregs[REG_EIP] = gregs[REG_EIP] + _disassemble((const uint8_t*)gregs[REG_EIP]);
   else
-    gregs[REG_EIP] = _fuckit._default_entry;
+    gregs[REG_EIP] = (greg_t)_fuckit._default_entry;
 #endif
 }
 
@@ -56,4 +61,12 @@ int fuckit_init() {
 
     _fuckit_setup_segfault_handler();
     atexit(_fuckit_final);
+}
+
+
+#if __cplusplus
+extern "C"
+#endif
+void __cxa_throw(void *thrown_exception, void *pvtinfo, void (*dest) (void *) ) {
+    // suppress g++ throw routine
 }
