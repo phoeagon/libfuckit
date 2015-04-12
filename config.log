@@ -91,27 +91,27 @@ g++: fatal error: no input files
 compilation terminated.
 configure:2579: $? = 4
 configure:2599: checking whether the C++ compiler works
-configure:2621: g++    conftest.cpp  >&5
+configure:2621: g++ -g   conftest.cpp  >&5
 configure:2625: $? = 0
 configure:2673: result: yes
 configure:2676: checking for C++ compiler default output file name
 configure:2678: result: a.out
 configure:2684: checking for suffix of executables
-configure:2691: g++ -o conftest    conftest.cpp  >&5
+configure:2691: g++ -o conftest -g   conftest.cpp  >&5
 configure:2695: $? = 0
 configure:2717: result: 
 configure:2739: checking whether we are cross compiling
-configure:2747: g++ -o conftest    conftest.cpp  >&5
+configure:2747: g++ -o conftest -g   conftest.cpp  >&5
 configure:2751: $? = 0
 configure:2758: ./conftest
 configure:2762: $? = 0
 configure:2777: result: no
 configure:2782: checking for suffix of object files
-configure:2804: g++ -c   conftest.cpp >&5
+configure:2804: g++ -c -g  conftest.cpp >&5
 configure:2808: $? = 0
 configure:2829: result: o
 configure:2833: checking whether we are using the GNU C++ compiler
-configure:2852: g++ -c   conftest.cpp >&5
+configure:2852: g++ -c -g  conftest.cpp >&5
 configure:2852: $? = 0
 configure:2861: result: yes
 configure:2870: checking whether g++ accepts -g
@@ -153,7 +153,7 @@ gcc: fatal error: no input files
 compilation terminated.
 configure:3469: $? = 4
 configure:3473: checking whether we are using the GNU C compiler
-configure:3492: gcc -c   conftest.c >&5
+configure:3492: gcc -c -g  conftest.c >&5
 configure:3492: $? = 0
 configure:3501: result: yes
 configure:3510: checking whether gcc accepts -g
@@ -161,7 +161,7 @@ configure:3530: gcc -c -g  conftest.c >&5
 configure:3530: $? = 0
 configure:3571: result: yes
 configure:3588: checking for gcc option to accept ISO C89
-configure:3651: gcc  -c   conftest.c >&5
+configure:3651: gcc  -c -g  conftest.c >&5
 configure:3651: $? = 0
 configure:3664: result: none needed
 configure:3689: checking whether gcc understands -c and -o together
@@ -257,11 +257,11 @@ AUTOMAKE='${SHELL} /run/shm/fuckcpp/missing automake-1.14'
 AWK='gawk'
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
-CFLAGS=''
+CFLAGS='-g'
 CPPFLAGS=''
 CXX='g++'
 CXXDEPMODE='depmode=gcc3'
-CXXFLAGS=''
+CXXFLAGS='-g'
 CYGPATH_W='echo'
 DEFS='-DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckit\" -DVERSION=\"0.1.0\"'
 DEPDIR='.deps'

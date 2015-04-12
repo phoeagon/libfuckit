@@ -76,7 +76,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = fuckit$(EXEEXT) fuckitcxx$(EXEEXT)
+bin_PROGRAMS = fuckit$(EXEEXT) fuckitcxx$(EXEEXT) fuckitdyn$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -99,6 +99,12 @@ fuckitcxx_OBJECTS = $(am_fuckitcxx_OBJECTS)
 fuckitcxx_DEPENDENCIES =
 fuckitcxx_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(fuckitcxx_LDFLAGS) $(LDFLAGS) -o $@
+am_fuckitdyn_OBJECTS = fuckitdyn-main_dyn.$(OBJEXT) \
+	fuckitdyn-fuckit.$(OBJEXT) fuckitdyn-fuckit_dyn.$(OBJEXT)
+fuckitdyn_OBJECTS = $(am_fuckitdyn_OBJECTS)
+fuckitdyn_DEPENDENCIES =
+fuckitdyn_LINK = $(CCLD) $(fuckitdyn_CFLAGS) $(CFLAGS) \
+	$(fuckitdyn_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -115,6 +121,10 @@ DEFAULT_INCLUDES = -I.
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
@@ -140,8 +150,9 @@ AM_V_CXXLD = $(am__v_CXXLD_$(V))
 am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(fuckit_SOURCES) $(fuckitcxx_SOURCES)
-DIST_SOURCES = $(fuckit_SOURCES) $(fuckitcxx_SOURCES)
+SOURCES = $(fuckit_SOURCES) $(fuckitcxx_SOURCES) $(fuckitdyn_SOURCES)
+DIST_SOURCES = $(fuckit_SOURCES) $(fuckitcxx_SOURCES) \
+	$(fuckitdyn_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -176,11 +187,11 @@ AUTOMAKE = ${SHELL} /run/shm/fuckcpp/missing automake-1.14
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = 
+CFLAGS = -g
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = 
+CXXFLAGS = -g
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckit\" -DVERSION=\"0.1.0\"
 DEPDIR = .deps
@@ -262,6 +273,10 @@ fuckit_LDADD = -ludis86
 fuckitcxx_SOURCES = main2.cpp fuckit.c fuckit.h
 fuckitcxx_LDFLAGS = 
 fuckitcxx_LDADD = -ludis86
+fuckitdyn_SOURCES = main_dyn.c fuckit.c fuckit.h fuckit_dyn.c
+fuckitdyn_CFLAGS = -Ddynamic
+fuckitdyn_LDFLAGS = 
+fuckitdyn_LDADD = -ludis86 -ldl
 all: all-am
 
 .SUFFIXES:
@@ -347,6 +362,10 @@ fuckitcxx$(EXEEXT): $(fuckitcxx_OBJECTS) $(fuckitcxx_DEPENDENCIES) $(EXTRA_fucki
 	@rm -f fuckitcxx$(EXEEXT)
 	$(AM_V_CXXLD)$(fuckitcxx_LINK) $(fuckitcxx_OBJECTS) $(fuckitcxx_LDADD) $(LIBS)
 
+fuckitdyn$(EXEEXT): $(fuckitdyn_OBJECTS) $(fuckitdyn_DEPENDENCIES) $(EXTRA_fuckitdyn_DEPENDENCIES) 
+	@rm -f fuckitdyn$(EXEEXT)
+	$(AM_V_CCLD)$(fuckitdyn_LINK) $(fuckitdyn_OBJECTS) $(fuckitdyn_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -354,6 +373,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/fuckit.Po
+include ./$(DEPDIR)/fuckitdyn-fuckit.Po
+include ./$(DEPDIR)/fuckitdyn-fuckit_dyn.Po
+include ./$(DEPDIR)/fuckitdyn-main_dyn.Po
 include ./$(DEPDIR)/main.Po
 include ./$(DEPDIR)/main2.Po
 
@@ -370,6 +392,48 @@ include ./$(DEPDIR)/main2.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+fuckitdyn-main_dyn.o: main_dyn.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-main_dyn.o -MD -MP -MF $(DEPDIR)/fuckitdyn-main_dyn.Tpo -c -o fuckitdyn-main_dyn.o `test -f 'main_dyn.c' || echo '$(srcdir)/'`main_dyn.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-main_dyn.Tpo $(DEPDIR)/fuckitdyn-main_dyn.Po
+#	$(AM_V_CC)source='main_dyn.c' object='fuckitdyn-main_dyn.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-main_dyn.o `test -f 'main_dyn.c' || echo '$(srcdir)/'`main_dyn.c
+
+fuckitdyn-main_dyn.obj: main_dyn.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-main_dyn.obj -MD -MP -MF $(DEPDIR)/fuckitdyn-main_dyn.Tpo -c -o fuckitdyn-main_dyn.obj `if test -f 'main_dyn.c'; then $(CYGPATH_W) 'main_dyn.c'; else $(CYGPATH_W) '$(srcdir)/main_dyn.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-main_dyn.Tpo $(DEPDIR)/fuckitdyn-main_dyn.Po
+#	$(AM_V_CC)source='main_dyn.c' object='fuckitdyn-main_dyn.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-main_dyn.obj `if test -f 'main_dyn.c'; then $(CYGPATH_W) 'main_dyn.c'; else $(CYGPATH_W) '$(srcdir)/main_dyn.c'; fi`
+
+fuckitdyn-fuckit.o: fuckit.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-fuckit.o -MD -MP -MF $(DEPDIR)/fuckitdyn-fuckit.Tpo -c -o fuckitdyn-fuckit.o `test -f 'fuckit.c' || echo '$(srcdir)/'`fuckit.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-fuckit.Tpo $(DEPDIR)/fuckitdyn-fuckit.Po
+#	$(AM_V_CC)source='fuckit.c' object='fuckitdyn-fuckit.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-fuckit.o `test -f 'fuckit.c' || echo '$(srcdir)/'`fuckit.c
+
+fuckitdyn-fuckit.obj: fuckit.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-fuckit.obj -MD -MP -MF $(DEPDIR)/fuckitdyn-fuckit.Tpo -c -o fuckitdyn-fuckit.obj `if test -f 'fuckit.c'; then $(CYGPATH_W) 'fuckit.c'; else $(CYGPATH_W) '$(srcdir)/fuckit.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-fuckit.Tpo $(DEPDIR)/fuckitdyn-fuckit.Po
+#	$(AM_V_CC)source='fuckit.c' object='fuckitdyn-fuckit.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-fuckit.obj `if test -f 'fuckit.c'; then $(CYGPATH_W) 'fuckit.c'; else $(CYGPATH_W) '$(srcdir)/fuckit.c'; fi`
+
+fuckitdyn-fuckit_dyn.o: fuckit_dyn.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-fuckit_dyn.o -MD -MP -MF $(DEPDIR)/fuckitdyn-fuckit_dyn.Tpo -c -o fuckitdyn-fuckit_dyn.o `test -f 'fuckit_dyn.c' || echo '$(srcdir)/'`fuckit_dyn.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-fuckit_dyn.Tpo $(DEPDIR)/fuckitdyn-fuckit_dyn.Po
+#	$(AM_V_CC)source='fuckit_dyn.c' object='fuckitdyn-fuckit_dyn.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-fuckit_dyn.o `test -f 'fuckit_dyn.c' || echo '$(srcdir)/'`fuckit_dyn.c
+
+fuckitdyn-fuckit_dyn.obj: fuckit_dyn.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -MT fuckitdyn-fuckit_dyn.obj -MD -MP -MF $(DEPDIR)/fuckitdyn-fuckit_dyn.Tpo -c -o fuckitdyn-fuckit_dyn.obj `if test -f 'fuckit_dyn.c'; then $(CYGPATH_W) 'fuckit_dyn.c'; else $(CYGPATH_W) '$(srcdir)/fuckit_dyn.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/fuckitdyn-fuckit_dyn.Tpo $(DEPDIR)/fuckitdyn-fuckit_dyn.Po
+#	$(AM_V_CC)source='fuckit_dyn.c' object='fuckitdyn-fuckit_dyn.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fuckitdyn_CFLAGS) $(CFLAGS) -c -o fuckitdyn-fuckit_dyn.obj `if test -f 'fuckit_dyn.c'; then $(CYGPATH_W) 'fuckit_dyn.c'; else $(CYGPATH_W) '$(srcdir)/fuckit_dyn.c'; fi`
 
 .cpp.o:
 	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

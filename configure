@@ -2441,8 +2441,8 @@ END
   fi
 fi
 
-${CFLAGS=""}
-${CXXFLAGS=""}
+${CFLAGS="-g"}
+${CXXFLAGS="-g"}
 
 ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
