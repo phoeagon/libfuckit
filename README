@@ -123,6 +123,17 @@ to get:
         finished
 
 
+## Best Practice
+
+Things are so much better if you have some files `mmap`ed.
+
+        int fd = open("/etc/passwd", O_RDWR);
+        char * p = (char*) mmap(NULL, 512,
+                    PROT_READ|PROT_WRITE|PROT_EXEC,
+                    MAP_SHARED, fd, 0);
+        // do crazy stuff
+
+
 ## Attribution
 This project is inspired by [FuckItPY](https://github.com/ajalt/fuckitpy),
 [FuckItJs](https://github.com/mattdiamond/fuckitjs).
