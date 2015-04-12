@@ -26,6 +26,7 @@ typedef void (*cxa_throw_type)(void* , void *, void (*) (void *));
 extern "C" 
 #endif
 void __cxa_throw(void *thrown_exception, void *pvtinfo, void (*dest) (void *) );
+//__cxa_throw is used by clang++ & g++
 
 // Disable assert
 #define NDEBUG 
