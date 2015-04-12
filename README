@@ -16,7 +16,7 @@ SIGABRT, SIGILL and SIGFPE to catch common problems like segmentation
 fault, illegal operations *whenever possible*.
 
 It also disables `throw` in C++ so that you never suffer from lacking
-a corresponding `catch(...){}`. `libfuck` also wraps some `glibc` functions
+a corresponding `catch(...){}`. `libfuckit` also wraps some `glibc` functions
 and syscalls to prevent them from returning error, e.g., `close` syscall
 now always return `0`. (Why should I care so long as I'm closing the file?)
 
