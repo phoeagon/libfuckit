@@ -21,7 +21,7 @@ int fuckit_init();
 
 // disable throw
 #if __cplusplus
-    #define throw sizeof
+    //#define throw sizeof
 typedef void (*cxa_throw_type)(void* , void *, void (*) (void *));
 extern "C" 
 #endif
@@ -30,6 +30,7 @@ void __cxa_throw(void *thrown_exception, void *pvtinfo, void (*dest) (void *) );
 
 // Disable assert
 #define NDEBUG 
-
+#undef assert
+#define assert(x) (1)
 
 #endif
