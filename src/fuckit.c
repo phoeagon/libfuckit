@@ -95,6 +95,9 @@ static void _fuckit_setup_segfault_handler() {
   sigaction(SIGBUS, &sa, NULL);
   sigaction(SIGFPE, &sa, NULL);
   sigaction(SIGILL, &sa, NULL);
+  sigaction(SIGUSR1, &sa, NULL);
+  sigaction(SIGUSR2, &sa, NULL);
+  sigaction(SIGTRAP, &sa, NULL);
   sa.sa_sigaction = (void (*)(int, siginfo_t*, void*))SIG_IGN;
   sigaction(SIGABRT, &sa, NULL);
 }
