@@ -60,10 +60,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/fuckcpp
-pkgincludedir = $(includedir)/fuckcpp
-pkglibdir = $(libdir)/fuckcpp
-pkglibexecdir = $(libexecdir)/fuckcpp
+pkgdatadir = $(datadir)/fuckit
+pkgincludedir = $(includedir)/fuckit
+pkglibdir = $(libdir)/fuckit
+pkglibexecdir = $(libexecdir)/fuckit
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -76,7 +76,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = fuckcpp$(EXEEXT)
+bin_PROGRAMS = fuckit$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -89,10 +89,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_fuckcpp_OBJECTS = main.$(OBJEXT) fuckcpp.$(OBJEXT)
-fuckcpp_OBJECTS = $(am_fuckcpp_OBJECTS)
-fuckcpp_DEPENDENCIES =
-fuckcpp_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(fuckcpp_LDFLAGS) \
+am_fuckit_OBJECTS = main.$(OBJEXT) fuckit.$(OBJEXT)
+fuckit_OBJECTS = $(am_fuckit_OBJECTS)
+fuckit_DEPENDENCIES =
+fuckit_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(fuckit_LDFLAGS) \
 	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -122,8 +122,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(fuckcpp_SOURCES)
-DIST_SOURCES = $(fuckcpp_SOURCES)
+SOURCES = $(fuckit_SOURCES)
+DIST_SOURCES = $(fuckit_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -161,7 +161,7 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = 
 CPPFLAGS = 
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckcpp\" -DVERSION=\"0.1.0\"
+DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fuckit\" -DVERSION=\"0.1.0\"
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -179,7 +179,7 @@ LTLIBOBJS =
 MAKEINFO = ${SHELL} /run/shm/fuckcpp/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-PACKAGE = fuckcpp
+PACKAGE = fuckit
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = 
 PACKAGE_STRING = 
@@ -234,9 +234,9 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 AM_CFLAGS = $(UDIS86_CFLAGS)
-fuckcpp_SOURCES = main.c fuckcpp.c fuckcpp.h
-fuckcpp_LDFLAGS = 
-fuckcpp_LDADD = -ludis86
+fuckit_SOURCES = main.c fuckit.c fuckit.h
+fuckit_LDFLAGS = 
+fuckit_LDADD = -ludis86
 all: all-am
 
 .SUFFIXES:
@@ -314,9 +314,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-fuckcpp$(EXEEXT): $(fuckcpp_OBJECTS) $(fuckcpp_DEPENDENCIES) $(EXTRA_fuckcpp_DEPENDENCIES) 
-	@rm -f fuckcpp$(EXEEXT)
-	$(AM_V_CCLD)$(fuckcpp_LINK) $(fuckcpp_OBJECTS) $(fuckcpp_LDADD) $(LIBS)
+fuckit$(EXEEXT): $(fuckit_OBJECTS) $(fuckit_DEPENDENCIES) $(EXTRA_fuckit_DEPENDENCIES) 
+	@rm -f fuckit$(EXEEXT)
+	$(AM_V_CCLD)$(fuckit_LINK) $(fuckit_OBJECTS) $(fuckit_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -324,7 +324,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/fuckcpp.Po
+include ./$(DEPDIR)/fuckit.Po
 include ./$(DEPDIR)/main.Po
 
 .c.o:

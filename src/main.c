@@ -1,7 +1,7 @@
-#include "fuckcpp.h"
+#include "fuckit.h"
 int main()
 {
-    _fuckcpp_init();
+    _fuckit_init();
     *((int*)123) = 144;
     printf("recovered\n");
     *((int*)34) = 144;

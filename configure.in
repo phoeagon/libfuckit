@@ -1,6 +1,6 @@
 AC_INIT(src/main.c)
 
-PACKAGE=fuckcpp
+PACKAGE=fuckit
 VERSION=0.1.0
 
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)

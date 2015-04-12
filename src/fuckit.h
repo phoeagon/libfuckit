@@ -14,7 +14,7 @@
 struct fuckcpp_t {
     void* _default_entry;
     ud_t * ud_obj;
-}_fuckcpp;
+}_fuckit;
 
-int _fuckcpp_init();
+int _fuckit_init();
 #endif

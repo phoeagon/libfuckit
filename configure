@@ -1780,7 +1780,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-PACKAGE=fuckcpp
+PACKAGE=fuckit
 VERSION=0.1.0
 
 am__api_version='1.14'
