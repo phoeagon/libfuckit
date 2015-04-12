@@ -16,5 +16,5 @@ struct fuckcpp_t {
     ud_t * ud_obj;
 }_fuckit;
 
-int _fuckit_init();
+int fuckit_init();
 #endif
