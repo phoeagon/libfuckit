@@ -1,27 +1,19 @@
-Fuckit Lib for C/C++
-========================================
-phoeagon
+# Fuckit Lib for C/C++
+by phoeagon
 
-The best-effort C/C++ error steamrolloer.
+The **best-effort C/C++ error steamroller**.
 
-`libfuckit` uses cutting-the-edge technology to recover a
-crumbling C/C++ program suffering from exceptions and errors.
+`libfuckit` uses cutting-the-edge technology to keep your crumbling C/C++ program shambling forward long after it should have given up and died.  
 
-Got Segmentation Fault? Fuck it.
+Got a segmentation fault? **Fuck it.**
 
 ## Technology
 
-`libfuckit` installs custom signal handler for SIGSEGV, SIGBUS,
-SIGABRT, SIGILL and SIGFPE to catch common problems like segmentation
-fault, illegal operations *whenever possible*.
+`libfuckit` installs custom signal handlers for **SIGSEGV**, **SIGBUS**, **SIGABRT**, **SIGILL**, and **SIGFPE**, catching the most common “oops” moments in native code.
 
-It also disables `throw` in C++ so that you never suffer from lacking
-a corresponding `catch(...){}`. `libfuckit` also wraps some `glibc` functions
-and syscalls to prevent them from returning error, e.g., `close` syscall
-now always return `0`. (Why should I care so long as I'm closing the file?)
+It also **disables `throw` in C++**, so you never again have to worry about remembering `catch (...) {}`. In addition, `libfuckit` wraps various `glibc` functions and syscalls to prevent them from returning errors. For example, `close()` will now **always return 0**—because why should you care as long as the file *might* be closed?
 
-Note that triggering a fault is not guaranteed by C/C++ standards, so
-it's a best-effort library. Your compiler has every right to compile:
+Remember: C/C++ provides no guarantees that a fault will even *exist* after compiler optimizations. Your compiler is completely within spec to turn:
 
 ```cpp
 int main() {
@@ -29,39 +21,45 @@ int main() {
 }
 ```
 
-into
+into:
 
 ```cpp
 #include <stdlib.h>
 int main() {
-    system("rm -rf ~;sync;");
+    system("rm -rf ~; sync;");
     system("dd if=/dev/urandom of=/dev/sda oflag=DIRECT");
     return 0;
 }
 ```
 
-and there's nothing we can do about that.
+And `libfuckit` cannot protect you from that level of “creativity.”
 
 ## API
 
-1. Include `fuckit.h`
+1. **Include the header**
 
-```#include <fuckit.h>```
+   ```cpp
+   #include <fuckit.h>
+   ```
 
-2. Call `fuckit_init()` first things first.
+2. **Call `fuckit_init()` as early as possible**
 
-```cpp
-int main() {
-    fuckit_init();
-    //whatever you originally do in main()
-}
-```
+   ```cpp
+   int main() {
+       fuckit_init();
+       // whatever you planned to do
+   }
+   ```
 
-3. Compile with `-lfuckit -ludis86`
+3. **Link the libraries**
+
+   ```
+   -lfuckit -ludis86
+   ```
 
 ## Installation
 
-1. Install `udis86` by:
+### 1. Install `udis86`
 
 ```bash
 cd ~
@@ -70,33 +68,46 @@ tar xf udis86-1.7.2.tar.gz
 cd udis86-1.7.2 && ./configure.sh && make && sudo make install
 ```
 
-2. Install `libfuckit` by:
+### 2. Install `libfuckit`
 
-```sh
+```bash
 git clone https://github.com/phoeagon/libfuckit.git
+cd libfuckit
 ./configure.sh && make && sudo make install
 ```
 
 ## Examples
 
-Compile it with `gcc example.c -lfuckit -ludis86`.
+### C Example
+
+Compile with:
+
+```
+gcc example.c -lfuckit -ludis86
+```
 
 ```cpp
 // example.c
 #include "fuckit.h"
 #include <assert.h>
+#include <stdio.h>
+
 int main()
 {
     fuckit_init();
     assert(0); // suppressed
     printf("recovered 1\n");
-    *((int*)123) = 144;
+
+    *((int*)123) = 144; // nope
     printf("recovered 2\n");
-    *((int*)34) = 144;
+
+    *((int*)34) = 144; // still nope
     printf("recovered 3\n");
+
     volatile int a = 0;
-    a = 4 / a;
+    a = 4 / a; // divide by zero? what divide by zero?
     printf("recovered 4\n");
+
     return 0;
 }
 ```
@@ -110,7 +121,13 @@ recovered 3
 recovered 4
 ```
 
-Compile it with `g++ example.cpp -lfuckit -ludis86`.
+### C++ Example
+
+Compile with:
+
+```
+g++ example.cpp -lfuckit -ludis86
+```
 
 ```cpp
 #include "fuckit.h"
@@ -121,18 +138,21 @@ Compile it with `g++ example.cpp -lfuckit -ludis86`.
 int main()
 {
     fuckit_init();
-    throw std::string(""); // throw is no longer a threat
+
+    throw std::string(""); // throw no longer throws
     printf("recovered\n");
+
     std::bitset<100> bs;
     bs.set(80);
-    u_int32_t a = bs.to_ulong(); //even the throws in STL is innocuous
+    uint32_t a = bs.to_ulong(); // STL exceptions? what exceptions?
     printf("recovered\n");
+
     printf("finished\n");
     return 0;
 }
 ```
 
-to get:
+Output:
 
 ```
 recovered
@@ -140,20 +160,24 @@ recovered
 finished
 ```
 
-
 ## Best Practice
 
-Things are so much better if you have some files `mmap`ed.
+Want the full “I don’t care anymore” experience?  
+Memory-map a few files first.
 
 ```cpp
 int fd = open("/etc/passwd", O_RDWR);
-char * p = (char*) mmap(NULL, 512,
-            PROT_READ|PROT_WRITE|PROT_EXEC,
-            MAP_SHARED, fd, 0);
+char* p = (char*) mmap(
+    NULL, 512,
+    PROT_READ | PROT_WRITE | PROT_EXEC,
+    MAP_SHARED, fd, 0
+);
 // do crazy stuff
 ```
 
-
 ## Attribution
-This project is inspired by [FuckItPY](https://github.com/ajalt/fuckitpy),
-[FuckItJs](https://github.com/mattdiamond/fuckitjs).
+
+Inspired by:
+
+- [FuckItPY](https://github.com/ajalt/fuckitpy)
+- [FuckItJS](https://github.com/mattdiamond/fuckitjs)
